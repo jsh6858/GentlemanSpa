@@ -1,0 +1,38 @@
+# ---------------[ Unity generated ]------------------ #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+# Unity3D generated meta files
+*.pidb.meta
+# Unity3D Generated File On Crash Reports
+sysinfo.txt
+ 
+# ----[ Visual Studio / MonoDevelop generated ]------- #
+ 
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+ 
+# -------------[ OS generated ]------------------------ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+
+# ------------ ETC
+Assets/Resources/vBug/somefiles
+Unity/C2SB3D_SVN_UNITY5_4_3_DEV/Assets/Editor/ConsoleE/ConsoleE_TabSettings.meta
+Unity/C2SB3D_SVN_UNITY5_4_3_DEV/Assets/Editor/ConsoleE/ConsoleE_TabSettings
