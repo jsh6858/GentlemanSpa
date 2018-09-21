@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4706414665944170}
   - component: {fileID: 114579841861011622}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248006397393808}
   - component: {fileID: 114964847960628914}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: BgSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4287826217210928}
   - component: {fileID: 114628825377106124}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4083039323219564}
   - component: {fileID: 114710941036455944}
   - component: {fileID: 65116849302210370}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4633368291902078}
   - component: {fileID: 114600672018989146}
   - component: {fileID: 65477355759308578}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 4594240587415744}
   - component: {fileID: 65661583917470826}
   - component: {fileID: 114946899443390582}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4791635558290350}
   - component: {fileID: 114057834390367780}
   - component: {fileID: 65388720945927542}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4814259768515008}
   - component: {fileID: 114325312007402010}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4307291397528340}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4593422464948200}
   - component: {fileID: 114030196298649660}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4332058871797142}
   - component: {fileID: 114392040494601390}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329956388997832}
   - component: {fileID: 114469982734080872}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4012141416452550}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4223010428596912}
   - component: {fileID: 114708176088785226}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: BgSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,6 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42cab26cdc1e4a679d3b507f9834d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bSelected: 0
   _iNum: 0
   _cardType: 3
 --- !u!114 &114579841861011622

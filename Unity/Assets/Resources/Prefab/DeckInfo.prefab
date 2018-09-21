@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4739876989755992}
   - component: {fileID: 114176552880300362}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: txtShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4745162910472986}
   - component: {fileID: 114476111742109760}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: bgSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4598574907887740}
   - component: {fileID: 114791331128432494}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4685751611191610}
   - component: {fileID: 114175956285544642}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: DeckInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4557916681936272}
   - component: {fileID: 114037136286077782}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sprite (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4837991029654466}
   - component: {fileID: 114846945786779170}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: txtPortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4176752347066684}
   - component: {fileID: 114261052879120394}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Sprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4308603668346134}
   - component: {fileID: 114433556627248986}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: txtAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,6 +315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca68b9cec1f2247c992a9e3056d5d12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _txtAttack: {fileID: 0}
+  _txtShield: {fileID: 0}
+  _txtPortion: {fileID: 0}
 --- !u!114 &114176552880300362
 MonoBehaviour:
   m_ObjectHideFlags: 1

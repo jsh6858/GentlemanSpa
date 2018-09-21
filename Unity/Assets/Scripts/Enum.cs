@@ -14,3 +14,17 @@ public enum GAME_MODE
 	BATTLE,
 }
 
+public enum BOX_SAVE_DATA_INT_SORT
+{
+	PLAYER_HP,
+}
+
+public enum BOX_SAVE_DATA_FLOAT_SORT
+{
+	SUPERIOR_BONUS,
+}
+
+public enum BOX_SAVE_DATA_BOOL_SORT
+{
+	
+}
