@@ -50,8 +50,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4438983625464728}
+  - component: {fileID: 114701113765718450}
+  - component: {fileID: 114539236097778738}
   m_Layer: 10
-  m_Name: New Prefab
+  m_Name: BattleField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +97,7 @@ Transform:
   m_GameObject: {fileID: 1666768632166260}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
   m_Children:
   - {fileID: 4271734785672430}
   m_Father: {fileID: 0}
@@ -127,6 +129,37 @@ Transform:
   m_Father: {fileID: 4271734785672430}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114539236097778738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1666768632166260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5ecb5660b11414fb042fb826e03b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scalingStyle: 2
+  manualWidth: 1280
+  manualHeight: 720
+  minimumHeight: 320
+  maximumHeight: 1536
+  fitWidth: 1
+  fitHeight: 1
+  adjustByDPI: 0
+  shrinkPortraitUI: 0
+--- !u!114 &114701113765718450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1666768632166260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415a8cc6c4e694779b20d3d3ebe08a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114793774137258448
 MonoBehaviour:
   m_ObjectHideFlags: 1

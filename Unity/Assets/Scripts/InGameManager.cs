@@ -20,7 +20,7 @@ public class InGameManager : MonoBehaviour {
 	}
 
 	MyDeck _myDeck;
-	MyDeck myDeck
+	public MyDeck myDeck
 	{
 		set
 		{
@@ -35,7 +35,7 @@ public class InGameManager : MonoBehaviour {
 	}
 
 	YourDeck _yourDeck;
-	YourDeck yourDeck
+	public YourDeck yourDeck
 	{
 		set
 		{
@@ -50,7 +50,7 @@ public class InGameManager : MonoBehaviour {
 	}
 
 	BattleField _battleField;
-	BattleField battleField
+	public BattleField battleField
 	{
 		set
 		{
@@ -63,6 +63,11 @@ public class InGameManager : MonoBehaviour {
 			return _battleField;
 		}
 	}
+
+	void Awake()
+	{
+		Start_CardSelect();
+	}	
 
 	public void Start_CardSelect()
 	{
@@ -86,6 +91,12 @@ public class InGameManager : MonoBehaviour {
 
 		yourDeck.Set_YourDeck_AI(); // AI 덱 생성
 		
+		
+	}
+
+	public void Fight()
+	{
+		battleField.Set_Battle(myDeck, yourDeck);
 	}
 
 	void DestroyAll()

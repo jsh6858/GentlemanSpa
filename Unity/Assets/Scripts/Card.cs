@@ -6,6 +6,8 @@ public class Card : MonoBehaviour {
 
 	readonly string[] _strAttribute = new string[4] {"Energy_Orange", "Shield", "Potion", "Item_Base"};
 
+	public bool _bSelected = false;
+
 	public int _iNum = 0;
 	public CARD_TYPE _cardType = CARD_TYPE.END;
 	UILabel _txtNum;
@@ -82,23 +84,43 @@ public class Card : MonoBehaviour {
 			GameManager.Instance.inGameManger.cardSelect.Show_Select(this);
 
 		// 배틀 모드일 때	
-		
+		else
+			GameManager.Instance.inGameManger.myDeck.Select_Card(this);
 	}
 
+	// Select중 커지기
 	public void Show_Select(bool bShow)
 	{
-		if(bShow)
+		if(bShow && !_bSelected)
 		{
 			transform.localPosition = transform.localPosition + new Vector3(0f, 13f, 0f);
 			transform.localScale = new Vector3(1.4f, 1.4f, 1f);
 		}
-		else if(!bShow && objSelect.activeSelf)
+		else if(!bShow && _bSelected)
 		{
 			transform.localPosition = transform.localPosition + new Vector3(0f, -13f, 0f);
 			transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 
 		objSelect.SetActive(bShow);
+
+		_bSelected = bShow;
+	}
+
+	public void Emphasize_myCard(bool bEmphasize)
+	{
+		if(bEmphasize && !_bSelected)
+		{
+			transform.localPosition = transform.localPosition + new Vector3(0f, 13f, 0f);
+			transform.localScale = new Vector3(1.4f, 1.4f, 1f);
+		}
+		else if(!bEmphasize && _bSelected)
+		{
+			transform.localPosition = transform.localPosition + new Vector3(0f, -13f, 0f);
+			transform.localScale = new Vector3(1f, 1f, 1f);
+		}
+
+		_bSelected = bEmphasize;
 	}
 
 	public void Select_Attribute(GameObject obj)
@@ -127,4 +149,9 @@ public class Card : MonoBehaviour {
 		Show_Select(false);
 	}
 	
+	public void Reverse_Card()
+	{
+		objFront.SetActive(!objFront.activeSelf);
+		objBack.SetActive(!objBack.activeSelf);
+	}
 }
