@@ -1,25 +1,29 @@
 # ---------------[ Unity generated ]------------------ #
-Temp/
-Obj/
-UnityGenerated/
-Library/
-# Unity3D generated meta files
-*.pidb.meta
-# Unity3D Generated File On Crash Reports
-sysinfo.txt
+**/[Ll]ibrary/*
+**/[Tt]emp/*
+**/[Oo]bj/*
+**/[Bb]uild/*
+**/[Bb]uilds/*
+**/UnityGenerated/*
+**/Assets/AssetStoreTools*
  
 # ----[ Visual Studio / MonoDevelop generated ]------- #
- 
 ExportedObj/
-*.svd
-*.userprefs
+.consulo/
 *.csproj
-*.pidb
-*.suo
-*.sln
-*.user
 *.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.pidb.meta
 *.booproj
+*.svd
+ 
+# Unity3D Crash Reports
+sysinfo.txt
  
 # -------------[ OS generated ]------------------------ #
 .DS_Store
@@ -30,9 +34,12 @@ ExportedObj/
 Icon?
 ehthumbs.db
 Thumbs.db
-
-
-# ------------ ETC
-Assets/Resources/vBug/somefiles
-Unity/C2SB3D_SVN_UNITY5_4_3_DEV/Assets/Editor/ConsoleE/ConsoleE_TabSettings.meta
-Unity/C2SB3D_SVN_UNITY5_4_3_DEV/Assets/Editor/ConsoleE/ConsoleE_TabSettings
+ios
+ios.app
+ 
+# include meta files
+!*.*.meta
+ 
+# Builds
+*.apk
+*.unitypackage
