@@ -38,6 +38,9 @@ public class BattleField : MonoBehaviour {
 		}
 	}
 
+	public UIGrid _grid;
+	public UIScrollView _scrollview;
+
 	void Awake()
 	{
 		_vMyPos = transform.Find("AnchorC/MyPos").position;
@@ -116,7 +119,7 @@ public class BattleField : MonoBehaviour {
 
 		int iRandNum = _randomNumbers[_iBattleRound];
 
-		const float fSuperior = 1.5f;
+		float fSuperior = PlayerPrefs.GetFloat("Superior", 1.5f);
 
 		if(myType == CARD_TYPE.ATTACK) // Attack
 		{
@@ -184,6 +187,24 @@ public class BattleField : MonoBehaviour {
 		Destroy(yourCard.gameObject);
 
 		_iBattleRound++;
+
+		Create_BattleInfo(myType, iMyNum, yourType, iYourNum);
+	}
+
+	void Create_BattleInfo(CARD_TYPE myType, int iMyNum, CARD_TYPE yourType, int iYourNum)
+	{
+		GameObject obj = GameObject.Instantiate(Resources.Load("Prefab/BattleInfo") as GameObject, Vector3.zero, Quaternion.identity);
+
+		obj.transform.SetParent(_grid.transform);
+		obj.transform.localScale = new Vector3(1f, 1f, 1f);
+		obj.transform.SetAsFirstSibling();
+
+		_grid.Reposition();
+		_scrollview.ResetPosition();
+
+		BattleInfo battleInfo = obj.GetComponent<BattleInfo>();
+		battleInfo.Set_BattleInfo(myType, iMyNum, yourType, iYourNum);
+
 	}
 
 	IEnumerator Show_RandomNumber()

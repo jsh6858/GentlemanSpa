@@ -49,6 +49,19 @@ public class InGameManager : MonoBehaviour {
 		}
 	}
 
+	GameObject _objEdit;
+	GameObject objEdit
+	{
+		get
+		{
+			if(null == _objEdit)
+				_objEdit = GameObject.Find("GameObject").transform.Find("Editor").gameObject;
+			return _objEdit;
+		}
+	}
+
+	public GameObject _Block;
+
 	BattleField _battleField;
 	public BattleField battleField
 	{
@@ -66,12 +79,26 @@ public class InGameManager : MonoBehaviour {
 
 	void Awake()
 	{
+		Sound_Manager.GetInstance().Initialize();
+
 		Start_CardSelect();
-	}	
+	}
+
+	public void Push_Edit()
+	{
+		Scene_Manager.Instance.Goto_Scene("Edit");
+	}
+	
 
 	public void Start_CardSelect()
 	{
 		Global._gameMode = GAME_MODE.CARD_SELECT;
+
+		Sound_Manager.GetInstance().Stop_Sound();
+		if(Random.Range(0, 2) == 0)
+			Sound_Manager.GetInstance().PlaySound("Hearthstone");
+		else
+			Sound_Manager.GetInstance().PlaySound("Hearthstone2");
 
 		DestroyAll();
 
@@ -107,5 +134,7 @@ public class InGameManager : MonoBehaviour {
 		myDeck = null;
 		Destroy(yourDeck.gameObject);
 		yourDeck = null;
+		Destroy(battleField.gameObject);
+		battleField = null;
 	}
 }

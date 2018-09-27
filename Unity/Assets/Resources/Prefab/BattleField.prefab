@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4296910856584740}
   m_Layer: 10
-  m_Name: BattleInfo
+  m_Name: ShowPreBattle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +181,6 @@ GameObject:
   - component: {fileID: 4776567091649272}
   - component: {fileID: 20076780774691416}
   - component: {fileID: 114758745934729342}
-  - component: {fileID: 81450978907981574}
   m_Layer: 10
   m_Name: Camera
   m_TagString: Untagged
@@ -281,7 +280,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1821461866580434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 44.759033, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4171702759078984}
@@ -427,13 +426,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!81 &81450978907981574
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886252043152386}
-  m_Enabled: 1
 --- !u!114 &114045993618538738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81807633ea807d4c8e3fff7e10c6000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: 0
+  movement: 1
   dragEffect: 2
   restrictWithinPanel: 1
   constrainOnDrag: 0
@@ -459,7 +451,7 @@ MonoBehaviour:
   verticalScrollBar: {fileID: 0}
   showScrollBars: 1
   customMovement: {x: 1, y: 0}
-  contentPivot: 0
+  contentPivot: 1
   scale: {x: 0, y: 0, z: 0}
   relativePositionOnReset: {x: 0, y: 0}
   centerOnChild: {fileID: 0}
@@ -521,13 +513,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3001
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 2
+  mDepth: 4
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -647,7 +639,7 @@ MonoBehaviour:
   mDepth: 3
   mSortingOrder: 0
   mSortingLayerName: 
-  mClipOffset: {x: 0, y: 0}
+  mClipOffset: {x: 0, y: -44.759033}
   useSortingOrder: 0
 --- !u!114 &114643636924074936
 MonoBehaviour:
@@ -732,6 +724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415a8cc6c4e694779b20d3d3ebe08a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grid: {fileID: 114842477113337360}
+  _scrollview: {fileID: 114045993618538738}
 --- !u!114 &114758745934729342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -787,7 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrangement: 1
   sorting: 0
-  pivot: 0
+  pivot: 1
   maxPerLine: 0
   cellWidth: 200
   cellHeight: 100
@@ -827,7 +821,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 512
   mHeight: 512
-  mDepth: 0
+  mDepth: 2
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0

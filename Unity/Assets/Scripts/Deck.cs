@@ -45,7 +45,7 @@ public class Deck : MonoBehaviour {
 
 	void Awake()
 	{
-		_iHp = 300;
+		_iHp = PlayerPrefs.GetInt("Hp", 200);
 		txtHp.text = _iHp.ToString();
 	}
 
