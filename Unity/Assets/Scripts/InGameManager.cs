@@ -72,7 +72,10 @@ public class InGameManager : MonoBehaviour {
 		get
 		{
 			if(null == _battleField)
+			{
 				_battleField = GameObject.Instantiate((Resources.Load("Prefab/BattleField") as GameObject)).GetComponent<BattleField>();
+			}
+				
 			return _battleField;
 		}
 	}
@@ -118,12 +121,12 @@ public class InGameManager : MonoBehaviour {
 
 		yourDeck.Set_YourDeck_AI(); // AI 덱 생성
 		
-		
+		battleField.Set_Deck(myDeck,  yourDeck);
 	}
 
 	public void Fight()
 	{
-		battleField.Set_Battle(myDeck, yourDeck);
+		battleField.Set_Battle();
 	}
 
 	void DestroyAll()

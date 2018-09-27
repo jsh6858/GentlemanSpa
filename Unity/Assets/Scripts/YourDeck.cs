@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class YourDeck : Deck {
+
+	void Awake()
+	{
+		_iHp = (int)PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.YOUR_HP], Global.EDIT_DEFAULTS[(int)EDIT_VALUE.YOUR_HP]);
+		txtHp.text = _iHp.ToString();
+	}
+
 	public void Set_YourDeck_AI()
 	{
 		GameObject card = Resources.Load("Prefab/Card") as GameObject;

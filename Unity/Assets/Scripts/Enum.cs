@@ -8,6 +8,16 @@ public enum CARD_TYPE
 	END
 }
 
+public enum EDIT_VALUE
+{
+	MY_HP,
+	YOUR_HP,
+	ATT_SUPERIOR,
+	DEF_SUPERIOR,
+	HEAL_SUPERIOR,
+	WAIT_TIME,
+}
+
 public enum GAME_MODE
 {
 	CARD_SELECT,

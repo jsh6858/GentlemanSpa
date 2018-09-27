@@ -45,8 +45,6 @@ public class Deck : MonoBehaviour {
 
 	void Awake()
 	{
-		_iHp = PlayerPrefs.GetInt("Hp", 200);
-		txtHp.text = _iHp.ToString();
 	}
 
 	public void Set_DeckInfo()
@@ -59,26 +57,46 @@ public class Deck : MonoBehaviour {
 		StartCoroutine(Start_HpAnim(iHp));
 	}
 
+	// 시간 초과로 가장 낮은 숫자의 카드를 뽑음
+	public Card Get_LowestCard()
+	{
+		Card card = _listCard[0];
+		int iNum = 10;
+
+		for(int i=0; i<_listCard.Count; ++i)
+		{
+			if(_listCard[i]._iNum < iNum)
+			{
+				iNum = _listCard[i]._iNum;
+				card = _listCard[i];
+			}
+		}
+
+		return card;
+	}
+
 	IEnumerator Start_HpAnim(int iHp)
 	{
-		int iHpSrc = _iHp;
+		float iHpSrc = _iHp;
 		int iHpDst = _iHp + iHp;
 
-		int iHpDir = iHp / Mathf.Abs(iHp); // 1 or -1
+		float fTime = 1f;
 
 		while(true)
 		{
-			iHpSrc += iHpDir;
-
-			txtHp.text = iHpSrc.ToString();
-
-			if(iHpSrc == iHpDst)
+			fTime -= Time.deltaTime;
+			if(fTime < 0f)
 				break;
+
+			iHpSrc += iHp * Time.deltaTime;
+
+			txtHp.text = ((int)iHpSrc).ToString();
 
 			yield return null;
 		}
 
 		_iHp = iHpDst;
+		txtHp.text = ((int)_iHp).ToString();
 
 		yield break;
 	}

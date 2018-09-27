@@ -15,6 +15,12 @@ public class MyDeck : Deck {
 		}
 	}
 
+	void Awake()
+	{
+		_iHp = (int)PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.MY_HP], Global.EDIT_DEFAULTS[(int)EDIT_VALUE.MY_HP]);
+		txtHp.text = _iHp.ToString();
+	}
+
 	public void Set_Deck(Card[] selectCard)
 	{
 		GameObject card = Resources.Load("Prefab/Card") as GameObject;

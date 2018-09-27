@@ -14,7 +14,10 @@ public class BattleField : MonoBehaviour {
 	YourDeck _yourDeck;
 
 	int[] _randomNumbers;
-	int _iBattleRound = 0;
+	int _iBattleRound = 0; // 현재 라운드
+
+	float _fTimer = 0f; // 시간 제한
+	bool _bStopTimer = false; // 타이머 종료하기 (유저가 선택함)
 
 	UILabel _txtRandomNumber;
 	UILabel txtRandomNumber
@@ -24,6 +27,17 @@ public class BattleField : MonoBehaviour {
 			if(null == _txtRandomNumber)
 				_txtRandomNumber = transform.Find("AnchorC/RandomNumber/Label").GetComponent<UILabel>();
 			return _txtRandomNumber;
+		}
+	}
+
+	UILabel _txtTimer;
+	UILabel txtTimer
+	{
+		get
+		{
+			if(null == _txtTimer)
+				_txtTimer = transform.Find("AnchorC/Timer/Label").GetComponent<UILabel>();
+			return _txtTimer;
 		}
 	}
 
@@ -46,31 +60,40 @@ public class BattleField : MonoBehaviour {
 		_vMyPos = transform.Find("AnchorC/MyPos").position;
 		_vYourPos = transform.Find("AnchorC/YourPos").position;
 
-		_randomNumbers = new int[10] { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+		_randomNumbers = Global.RAND_NUMBERS;
 		UsefulFunction.Shuffle(_randomNumbers);
 	}
 
-	public void Set_Battle(MyDeck myDeck, YourDeck yourDeck)
+	public void Set_Deck(MyDeck myDeck, YourDeck yourDeck)
+	{
+		_myDeck = myDeck;
+		_yourDeck = yourDeck;
+
+		StartCoroutine(Start_Timer()); // 타이머 재생
+	}
+
+	// 1. 내가 카드를 선택했을 때,
+	// 2. 시간이 다 되어 자동으로 선택 되었을 때
+	public void Set_Battle()
 	{
 		if(_iBattleRound == 10)
 			return;
 
-		_myDeck = myDeck;
-		_yourDeck = yourDeck;
-
 		// 내 카드
-		Card myCard = myDeck.Get_SelectedCard();
+		Card myCard = _myDeck.Get_SelectedCard();
 		if(null == myCard)
 			return;
 
 		// 니 카드 
-		Card yourCard = yourDeck.Get_SelectedCard_AI();
+		Card yourCard = _yourDeck.Get_SelectedCard_AI();
 
 		StartCoroutine(Battle_Start(myCard, yourCard));
 	}
 
 	IEnumerator Battle_Start(Card myCard, Card yourCard)
 	{
+		_bStopTimer = true;
+
 		_myDeck.Activate_Selection(false);
 
 		_bMyCardSet = false;
@@ -104,6 +127,9 @@ public class BattleField : MonoBehaviour {
 		_yourDeck.Reset_Select();
 
 		objRandomNumber.SetActive(false);
+		
+		StartCoroutine(Start_Timer()); // 타이머 재생
+		_iBattleRound++; // 다음 라운드
 
 		yield break;
 	}
@@ -119,7 +145,7 @@ public class BattleField : MonoBehaviour {
 
 		int iRandNum = _randomNumbers[_iBattleRound];
 
-		float fSuperior = PlayerPrefs.GetFloat("Superior", 1.5f);
+		//float fSuperior = PlayerPrefs.GetFloat("Superior", 1.5f);
 
 		if(myType == CARD_TYPE.ATTACK) // Attack
 		{
@@ -131,13 +157,19 @@ public class BattleField : MonoBehaviour {
 			}
 			else if(yourType == CARD_TYPE.SHIELD) // SHIELD
 			{
-				if(iMyNum > iYourNum)
+				float fDefault = Global.EDIT_DEFAULTS[(int)EDIT_VALUE.DEF_SUPERIOR];
+				float fSuperior = PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.DEF_SUPERIOR], fDefault);
+				
+				//if(iMyNum > iYourNum)
 					_myDeck.Set_Hp(-(int)(iYourNum * iRandNum * fSuperior));
-				else
-					_myDeck.Set_Hp(-(int)(iMyNum * iRandNum * fSuperior));
+				//else
+					//_myDeck.Set_Hp(-(int)(iMyNum * iRandNum * fSuperior));
 			}
 			else if(yourType == CARD_TYPE.HEAL) // HEAL
 			{
+				float fDefault = Global.EDIT_DEFAULTS[(int)EDIT_VALUE.ATT_SUPERIOR];
+				float fSuperior = PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.ATT_SUPERIOR], fDefault);
+
 				_yourDeck.Set_Hp(-(int)(iMyNum * iRandNum * fSuperior));
 			}
 		}
@@ -147,9 +179,12 @@ public class BattleField : MonoBehaviour {
 
 			if(yourType == CARD_TYPE.ATTACK) // Attack
 			{
-				if(iMyNum > iYourNum)
-					_yourDeck.Set_Hp(-(int)(iYourNum * iRandNum * fSuperior));
-				else
+				float fDefault = Global.EDIT_DEFAULTS[(int)EDIT_VALUE.DEF_SUPERIOR];
+				float fSuperior = PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.DEF_SUPERIOR], fDefault);
+
+				//if(iMyNum > iYourNum)
+					//_yourDeck.Set_Hp(-(int)(iYourNum * iRandNum * fSuperior));
+				//else
 					_yourDeck.Set_Hp(-(int)(iMyNum * iRandNum * fSuperior));
 			}
 			else if(yourType == CARD_TYPE.SHIELD) // SHIELD
@@ -158,7 +193,11 @@ public class BattleField : MonoBehaviour {
 			}
 			else if(yourType == CARD_TYPE.HEAL) // HEAL
 			{
-				_yourDeck.Set_Hp((int)(iYourNum * iRandNum * fSuperior));
+				float fDefault = Global.EDIT_DEFAULTS[(int)EDIT_VALUE.HEAL_SUPERIOR];
+				float fSuperior = PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.HEAL_SUPERIOR], fDefault);
+
+				_yourDeck.Set_Hp((int)(iYourNum * iRandNum * fSuperior * 0.5f)); // 절반 회복
+				_myDeck.Set_Hp((int)(-iYourNum * iRandNum * fSuperior * 0.5f)); // 절반 공격
 			}
 		}
 
@@ -167,11 +206,18 @@ public class BattleField : MonoBehaviour {
 
 			if(yourType == CARD_TYPE.ATTACK) // Attack
 			{
+				float fDefault = Global.EDIT_DEFAULTS[(int)EDIT_VALUE.ATT_SUPERIOR];
+				float fSuperior = PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.ATT_SUPERIOR], fDefault);
+
 				_myDeck.Set_Hp(-(int)(iYourNum * iRandNum * fSuperior));
 			}
 			else if(yourType == CARD_TYPE.SHIELD) // SHIELD
 			{
-				_myDeck.Set_Hp((int)(iMyNum * iRandNum * fSuperior));
+				float fDefault = Global.EDIT_DEFAULTS[(int)EDIT_VALUE.HEAL_SUPERIOR];
+				float fSuperior = PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.HEAL_SUPERIOR], fDefault);
+
+				_myDeck.Set_Hp((int)(iMyNum * iRandNum * fSuperior * 0.5f)); // 절반 회복
+				_yourDeck.Set_Hp((int)(-iMyNum * iRandNum * fSuperior * 0.5f)); // 절반 공격
 			}
 			else if(yourType == CARD_TYPE.HEAL) // HEAL
 			{
@@ -186,9 +232,7 @@ public class BattleField : MonoBehaviour {
 		_yourDeck._listCard.Remove(yourCard);
 		Destroy(yourCard.gameObject);
 
-		_iBattleRound++;
-
-		Create_BattleInfo(myType, iMyNum, yourType, iYourNum);
+		Create_BattleInfo(myType, iMyNum, yourType, iYourNum); // 전투 정보 생성
 	}
 
 	void Create_BattleInfo(CARD_TYPE myType, int iMyNum, CARD_TYPE yourType, int iYourNum)
@@ -203,8 +247,7 @@ public class BattleField : MonoBehaviour {
 		_scrollview.ResetPosition();
 
 		BattleInfo battleInfo = obj.GetComponent<BattleInfo>();
-		battleInfo.Set_BattleInfo(myType, iMyNum, yourType, iYourNum);
-
+		battleInfo.Set_BattleInfo(myType, iMyNum, yourType, iYourNum, _randomNumbers[_iBattleRound]);
 	}
 
 	IEnumerator Show_RandomNumber()
@@ -214,7 +257,7 @@ public class BattleField : MonoBehaviour {
 		float fTime = 1f;
 		int iTemp = 0;
 
-		int[] iArr = new int[10] {11,12,13,14,15,16,17,18,19,20};
+		int[] iArr = Global.RAND_NUMBERS;
 
 		while(true)
 		{
@@ -268,5 +311,32 @@ public class BattleField : MonoBehaviour {
 
 		_bYourCardSet = true;
 		yield break;
+	}
+
+	IEnumerator Start_Timer()
+	{
+		_fTimer = PlayerPrefs.GetFloat(Global.EDIT_STRINGS[(int)EDIT_VALUE.WAIT_TIME], Global.EDIT_DEFAULTS[(int)EDIT_VALUE.WAIT_TIME]); // 제한시간 리셋 
+		_bStopTimer = false;
+
+		while(true)
+		{
+			_fTimer -= Time.deltaTime;
+
+			if(_bStopTimer) // 유저의 카드 선택으로 타이머를 완전히 종료함
+				yield break;
+
+			// 출력
+			txtTimer.text = Mathf.CeilToInt(_fTimer).ToString();
+
+			if(_fTimer < 0f)
+				break;
+
+			yield return null;
+		}
+
+		// 가장 낮은숫자 자동 선택
+		_myDeck.Select_Card(_myDeck.Get_LowestCard());
+
+		Set_Battle();
 	}
 }

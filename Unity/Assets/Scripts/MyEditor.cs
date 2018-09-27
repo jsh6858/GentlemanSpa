@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class MyEditor : MonoBehaviour {
 
+	Dictionary<string, UILabel> _dicEdit;
+
+	public UIGrid _Grid;
+
+	string[] _editStrings;
+
 	UILabel _txtHp;
 	UILabel txtHp
 	{
@@ -28,27 +34,28 @@ public class MyEditor : MonoBehaviour {
 
 	void Awake()
 	{
-		int iHp = PlayerPrefs.GetInt("Hp", 200);
-		txtHp.text = iHp.ToString();
+		_dicEdit = new Dictionary<string, UILabel>();
 
-		float fSuperior = PlayerPrefs.GetFloat("Superior", 1.5f);
-		txtSuperior.text = fSuperior.ToString();
+		_editStrings = Global.EDIT_STRINGS;
+		float[] fDefaultArr = Global.EDIT_DEFAULTS;
+
+		GameObject objEdit = Resources.Load("Prefab/EditValue") as GameObject;
+
+		for(int i=0; i<_editStrings.Length; ++i)
+		{
+			GameObject obj = GameObject.Instantiate(objEdit, transform.position, Quaternion.identity);
+			obj.transform.SetParent(_Grid.transform, false);
+
+			obj.transform.Find("Label").GetComponent<UILabel>().text = _editStrings[i];
+
+			_dicEdit.Add(_editStrings[i], obj.transform.Find("Input/Label").GetComponent<UILabel>());
+
+			_dicEdit[_editStrings[i]].text = PlayerPrefs.GetFloat(_editStrings[i], fDefaultArr[i]).ToString();
+		}
 	}
 
 	public void Goto_Ingame()
 	{
 		Scene_Manager.Instance.Goto_Scene("InGame");
 	}
-
-	public void Submit_Hp()
-	{
-		PlayerPrefs.SetInt("Hp", int.Parse(txtHp.text));
-	}
-
-	public void Submit_Superior()
-	{
-		PlayerPrefs.SetFloat("Superior", float.Parse(txtSuperior.text));
-	}
-
-	
 }

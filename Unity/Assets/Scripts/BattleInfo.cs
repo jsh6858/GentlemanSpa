@@ -49,13 +49,26 @@ public class BattleInfo : MonoBehaviour {
 		}
 	}
 
-	public void Set_BattleInfo(CARD_TYPE myType, int iMyNum, CARD_TYPE yourType, int iYourNum)
+	UILabel _txtRandNum;
+	UILabel txtRandNum
+	{
+		get
+		{
+			if(null == _txtRandNum)
+				_txtRandNum = transform.Find("RandNum").GetComponent<UILabel>();
+			return _txtRandNum;
+		}
+	}
+
+	public void Set_BattleInfo(CARD_TYPE myType, int iMyNum, CARD_TYPE yourType, int iYourNum, int RandNum)
 	{
 		sprMyAttribute.spriteName = _strAttribute[(int)myType];
 		txtMyNum.text = iMyNum.ToString();
 
 		sprYourAttribute.spriteName = _strAttribute[(int)yourType];
 		txtYourNum.text = iYourNum.ToString();
+
+		txtRandNum.text = RandNum.ToString();
 	}
 
 }
